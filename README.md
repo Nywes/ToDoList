@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ToDo List Project - Frontend Application
+
+This project is a frontend application for managing tasks, built with Next.js
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install Dependencies
+
+First, install the required dependencies by running:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+This will install all the necessary packages from the `package.json` file.
+
+### 2. Run the Development Server
+
+Once dependencies are installed, you can start the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The server will run on [http://localhost:3000](http://localhost:3000), where you can view the app in your browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+In the project directory, you can run:
 
-## Learn More
+### `npm run dev`
 
-To learn more about Next.js, take a look at the following resources:
+Runs the development server in development mode.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### `npm run build`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Builds the app for production to the `./.next` folder. It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## Deploy on Vercel
+### `npm run start`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Starts the production server after building the app with `npm run build`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+- `src/` - Contains the main application files.
+    - `app/` - Main app logic.
+    - `components/` - Reusable React components.
+    - `constants/` - Application constants.
+    - `services/` - API services.
+
+## API Endpoints
+
+This application connects to a backend API that manages tasks. The following endpoints are available:
+
+### **GET /tasks**
+
+- **Description**: Fetches a list of all tasks.
+- **Response**: A list of task objects containing `id`, `title`, `description`, `status`, `createdAt`, and `updatedAt`.
+
+### **GET /tasks/:id**
+
+- **Description**: Fetches a specific task by its ID.
+- **Response**: A task object containing `id`, `title`, `description`, `status`, `createdAt`, and `updatedAt`.
+
+### **POST /tasks**
+
+- **Description**: Creates a new task.
+- **Request Body**: 
+  ```json
+  {
+    "title": "string",
+    "description": "string"
+  }
+  ```
+- **Response**: The created task object with `id`, `title`, `description`, `status`, `createdAt`, and `updatedAt`.
+
+### **PATCH /tasks/:id**
+
+- **Description**: Updates an existing task by its ID.
+- **Request Body**: 
+  ```json
+  {
+    "title": "string",
+    "description": "string",
+    "status": "string"
+  }
+  ```
+- **Response**: The updated task object with `id`, `title`, `description`, `status`, `createdAt`, and `updatedAt`.
+
+### **DELETE /tasks/:id**
+
+- **Description**: Deletes a task by its ID.
+- **Response**: A status message indicating success or failure.
+
+## Architecture Overview
+
+- **Frontend (Next.js)**: This application uses Next.js to render pages dynamically, fetch data from the backend, and manage the application state. It relies heavily on React and hooks to manage component lifecycle and state.
+- **State Management**: The application uses local state and effect hooks to manage and update the UI based on user actions.
+- **Routing**: Next.js uses file-based routing to automatically handle navigation between pages.
+- **API Calls**: API calls are made to the backend API (such as `GET /tasks` or `POST /tasks`) using `fetch` or any preferred HTTP client (like Axios).
